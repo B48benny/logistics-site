@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LogiTrack - Track Your Package</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>LogiTrack</h1>
+    <p>Enter your tracking code below:</p>
+    <form id="trackForm">
+      <input type="text" id="trackingCode" placeholder="Enter Tracking Code" required>
+      <button type="submit">Track</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("trackForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const code = document.getElementById("trackingCode").value.trim();
+      if (code) {
+        window.location.href = `tracking.html?code=${code}`;
+      }
+    });
+  </script>
+</body>
+</html>

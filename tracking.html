@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tracking Info</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Tracking Details</h1>
+    <div id="trackingInfo"></div>
+    <a href="index.html">Back to Home</a>
+  </div>
+
+  <script>
+    // Mock tracking data
+    const trackingData = {
+      "ABC123": {
+        status: "In Transit",
+        steps: [
+          "Package received at origin facility",
+          "Departed origin",
+          "Arrived at sorting center",
+          "Out for delivery"
+        ]
+      },
+      "XYZ789": {
+        status: "Delivered",
+        steps: [
+          "Package received at origin",
+          "Shipped",
+          "Delivered to doorstep"
+        ]
+      }
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    const infoDiv = document.getElementById("trackingInfo");
+
+    if (code && trackingData[code]) {
+      const data = trackingData[code];
+      infoDiv.innerHTML = `<h2>Status: ${data.status}</h2><ul>` +
+        data.steps.map(step => `<li>${step}</li>`).join('') +
+        `</ul>`;
+    } else {
+      infoDiv.innerHTML = `<p>No tracking data found for <strong>${code}</strong>.</p>`;
+    }
+  </script>
+</body>
+</html>
